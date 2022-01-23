@@ -127,6 +127,7 @@ fviz_dend(res.hc, cex = 0.5)
 ```
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc7.png)
 
+## D'aprés la matrice de dissimilarité calculer par la fonction `dist()` on peut construire l'arbre hiérarchique ci-dessus, on peut remarquer qu'on a presque les mêmes resultats que les graphiques presedents, par exemple *`Clay`* et  *`Sebrle`*  sont réunis dans la même branche anissi que *`Kapov`* , et ces trois elements constituent le premier cluster.
 
 ### __Vérification de l’arborescence du clustering__
 
@@ -144,6 +145,7 @@ cor(res.dist, cophenetic(res.hc2))
 ```
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc9.png)
 
+## On remarque que le coefficient de corrélation montre que l’utilisation d’une méthode de liaison/linkage différente crée un arbre qui représente légèrement mieux les distances initiales.
 
 ### __découpage du dendrogramme en clusters__
 
@@ -168,6 +170,7 @@ fviz_dend(res.hc, k = 5,
 ```
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc11.png)
 
+## En utilisant le fonction `cutree()` on peut decouper l'arbre généré en plusieurs clusters .
 
 ```r
 fviz_cluster(list(data = df, cluster = grp),
@@ -177,7 +180,7 @@ fviz_cluster(list(data = df, cluster = grp),
              show.clust.cent = FALSE, ggtheme = theme_minimal())
 ```
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc12.png)
-
+## visualisation de la résultat dans un diagrame de dispersion.
 ## __Hierarchical K-Means Clustering__
 
  
@@ -205,3 +208,5 @@ fviz_cluster(res.hk, palette = "jco", repel = TRUE,
              ggtheme = theme_classic())
 ```
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc14.png)
+
+## On remarque que aprés la combinaison du k-means et le Clustering hiérarchique on obtient des resultats et des visualisation plus significatif et plus stable surtout au niveau de diagrame de dispersion, il ya un grand difference dans la qualité de la representation.
