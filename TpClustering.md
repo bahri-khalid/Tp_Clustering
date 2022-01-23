@@ -5,9 +5,7 @@ Le travail à faire réalisé par *BAHRI Khalid*
 library(learnr)
 library(tidyverse)
 library(stats)
-#library(FactoMineR)
 library(factoextra)
-#library(corrplot)
 tutorial_options(exercise.timelimit = 60)
 knitr::opts_chunk$set(error = TRUE)
 ```
@@ -20,7 +18,7 @@ knitr::opts_chunk$set(error = TRUE)
 library(stats)  
 library(factoextra)   
 ```
-
+## Nous utiliserons le jeu de données de démonstration `decathlon2` du package `factoextra`.  
 
 ```r
 data(decathlon2[-13])
@@ -50,6 +48,7 @@ geom_vline(xintercept = 5, linetype = 2)
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc1.png)
 ### __Calcul du clustering k-means __
 
+## Le grapheique ci-dessus donne les valeurs de la variance "`WSS`" dans les clusters pour differents valeurs de `k`, et on peut remarquer que pour les valeurs de k plus grand que 5 la variance interne est trés impotante alors que les valeurs au-delà de 5 on peu de valeur.
 ```r
 set.seed(123) 
 df <- scale(decathlon2[-13])
@@ -71,16 +70,19 @@ decathlon2_C=cbind(decathlon2[-13], cluster=as.factor(km.res$cluster))
 ggplot(decathlon2_C, aes(y=X400m, fill=cluster)) + geom_boxplot()  
 ggplot(decathlon2_C, aes(y=Shot.put, fill=cluster)) + geom_boxplot()  
 ```
-```r
+<!-- ```r
 
 for(i in c(1:5)){
      var=colnames(decathlon2_C)[i] 
      print(ggplot(decathlon2_C, aes(y=decathlon2_C[[i]], fill=cluster)) + 
      geom_boxplot()+ ylab(var)) 
      } 
-```
+``` -->
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc3.png)
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc4.png)
+
+## D'après les graphiques ci-dessus on peut visualiser la distribution des variables de notre jeu de données dans chaque cluster,par exemple pour le graphique du variable **`Shot.put`** on remarque que les valeurs sont parfaitement  distribuer dans le cluster `4,5` et un peut moin distribuer dans `1,2` alors que il ya une distribution déséquilibré au niveau du cluster `3`.
+
 
 ### __Accès aux résultats de la fonction `kmeans()`__   
 
@@ -96,13 +98,16 @@ km.res$centers
 ```r
 fviz_cluster(km.res, data = df,
 palette = c("#2E9FDF", "#00AFBB", "#E7B800", "#FC4E07","#112233"),
-ellipse.type = "euclid", # Concentration ellipse
-star.plot = TRUE, # Add segments from centroids to items
-repel = TRUE, # Avoid label overplotting (slow)
+ellipse.type = "euclid", 
+star.plot = TRUE, 
+repel = TRUE, 
 ggtheme = theme_minimal()
 )  
 ```
 ![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc6.png)
+## Dans ce graphique on a une visualisation sur deux composants principaux des clusters en utilisant le nuage de points et une coloration de que point de données en fonction de son cluster, entourer par des ellipses de concentration, on remaque que notre choix de `k = 5` nous faire sortir trois cluster bien séparé `(1,3 et 4)` et deux autres cluster un peu fusionnés.
+
+
 ## __Clustering hiérarchique__
 
 ```r
