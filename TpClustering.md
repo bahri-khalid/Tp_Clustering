@@ -47,7 +47,7 @@ df <- scale(decathlon2[-13]) # Scaling the data
 fviz_nbclust(df, kmeans, method = "wss") +
 geom_vline(xintercept = 5, linetype = 2)
 ```
-![](./tpc1.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc1.png)
 ### __Calcul du clustering k-means __
 
 ```r
@@ -56,7 +56,7 @@ df <- scale(decathlon2[-13])
 km.res <- kmeans(df, 5, nstart = 25)  
 print(km.res) 
 ```
-![](./tpc2.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc2.png)
 ```r
 set.seed(123) 
 df <- scale(decathlon2[-13])
@@ -79,8 +79,8 @@ for(i in c(1:5)){
      geom_boxplot()+ ylab(var)) 
      } 
 ```
-![](./tpc3.png)
-![](./tpc4.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc3.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc4.png)
 
 ### __Accès aux résultats de la fonction `kmeans()`__   
 
@@ -88,7 +88,7 @@ for(i in c(1:5)){
 km.res$cluster
 km.res$centers
 ```
-![](./tpc5.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc5.png)
 
 ### __Visualisation des clusters produits par `kmeans()`__   
 
@@ -102,7 +102,7 @@ repel = TRUE, # Avoid label overplotting (slow)
 ggtheme = theme_minimal()
 )  
 ```
-![](./tpc6.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc6.png)
 ## __Clustering hiérarchique__
 
 ```r
@@ -120,7 +120,7 @@ grp <- cutree(res.hc, k = 5)
 ```r
 fviz_dend(res.hc, cex = 0.5)  
 ```
-![](./tpc7.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc7.png)
 
 
 ### __Vérification de l’arborescence du clustering__
@@ -130,14 +130,14 @@ fviz_dend(res.hc, cex = 0.5)
 res.coph <- cophenetic(res.hc)     
 cor(res.dist, res.coph)
 ```
-![](./tpc8.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc8.png)
 
 
 ```r
 res.hc2 <- hclust(res.dist, method = "average") 
 cor(res.dist, cophenetic(res.hc2)) 
 ```
-![](./tpc9.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc9.png)
 
 
 ### __découpage du dendrogramme en clusters__
@@ -151,7 +151,7 @@ head(grp, n = 10)
 table(grp)    
 rownames(df)[grp == 1]
 ```
-![](tpc10.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc10.png)
 
 ```r 
 fviz_dend(res.hc, k = 5, 
@@ -161,7 +161,7 @@ fviz_dend(res.hc, k = 5,
           rect = TRUE 
           )
 ```
-![](./tpc11.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc11.png)
 
 
 ```r
@@ -171,7 +171,7 @@ fviz_cluster(list(data = df, cluster = grp),
              repel = TRUE, 
              show.clust.cent = FALSE, ggtheme = theme_minimal())
 ```
-![](./tpc12.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc12.png)
 
 ## __Hierarchical K-Means Clustering__
 
@@ -191,7 +191,7 @@ km.res <- kmeans(df, 5, nstart = 25)
 res.dist <- dist(df, method = "euclidean") 
 res.hk <-hkmeans(df, 5) 
 ```
-![](./tpc13.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc13.png)
 
 ```r
 fviz_dend(res.hk, cex = 0.6, palette = "jco",rect = TRUE, 
@@ -199,4 +199,4 @@ fviz_dend(res.hk, cex = 0.6, palette = "jco",rect = TRUE,
 fviz_cluster(res.hk, palette = "jco", repel = TRUE,
              ggtheme = theme_classic())
 ```
-![](./tpc14.png)
+![](https://github.com/bahri-khalid/Tp_Clustering/raw/master/tpc14.png)
